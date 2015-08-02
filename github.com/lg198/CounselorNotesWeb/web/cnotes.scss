@@ -1,0 +1,160 @@
+@import "bourbon/bourbon";
+
+@mixin boxShadow($args) {
+    -webkit-box-shadow: $args;
+	   -moz-box-shadow: $args;
+	        box-shadow: $args;
+}
+
+@mixin transition($args) {
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -o-transition: $args;
+    transition: $args;
+}
+
+@mixin disableSelection() {
+   -webkit-touch-callout: none;
+   -webkit-user-select: none;
+   -khtml-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+}
+
+$header-padding:3px;
+$header-height:45px;
+
+ html,
+body {
+    height: 100%;
+}
+.header {
+    background-color: #166EC9;
+    color: white;
+    height: $header-height;
+    width: 100%;
+    overflow: hidden;
+    padding: $header-padding;
+}
+.header-button {
+    position: absolute;
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+    font-size: 14px;
+    background: transparent;
+    border: transparent;
+}
+.header-button:hover {
+    background-color: #7DA1C7;
+}
+.header-button:active {
+    background-color: #868DCD;
+}
+.header-button-l {
+    @extend .header-button;
+    left: $header-padding;
+    right: auto;
+}
+.header-button-r {
+    @extend .header-button;
+    left: auto;
+    right: $header-padding;
+}
+.header .button .fa {
+    font-size: 20px;
+    color: blue;
+}
+#settings-button .fa {
+    color: black;
+    font-size: 25px;
+}
+#main-splitpane {
+    top: $header-height + (2*$header-padding);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    width: auto;
+    height: auto;
+}
+.button:hover {
+    text-decoration: none;
+}
+
+#search-area {
+    background-color: lighten(#73C1BB, 15);
+} 
+
+#student-search {
+    padding-left: 23px;
+    position: relative;
+    width: 100%;
+    margin-bottom: 0;
+}
+
+#student-search-icon {
+    position: relative; 
+    color: blue; 
+    float: left; 
+    margin-left: 5px;
+    margin-top: -28px; 
+    z-index: 2;
+}
+
+#search-list-placeholder {
+    display: none; 
+    position: absolute; 
+    top:50%; 
+    left: 0; 
+    right:80%; 
+    text-align: center;
+}
+
+.list {
+    margin-top: 0;
+    height: 100%;
+    list-style: none;
+    padding-left: 0;
+}
+
+.list li {
+    padding: 10px;
+    font-size: 14px;
+    color: whitesmoke;
+    cursor: pointer;
+    z-index: 0;
+    
+    @include transition((transform 0.01s, box-shadow 0.5s 0.01s , -m-box-shadow 0.5s 0.01s, -webkit-box-shadow 0.5s 0.01s, background 0.5s 0.01s));
+    @include disableSelection();
+}
+
+.list li:hover:not(.active) {
+    @include boxShadow(0px 2px 17px -2px rgba(0,0,0,0.75));
+    transform: translateZ(50px);
+    @include transition((transform 0.01s 0.5s, box-shadow 0.5s, -m-box-shadow 0.5s, -webkit-box-shadow 0.5s, background 0.5s));
+}
+
+
+.list li:nth-of-type(even) {
+    background-color: darken(#73C1BB, 3);
+}
+
+.list li:nth-of-type(even):active {
+    background-color: darken(#73C1BB, 8);
+}
+
+.list li:nth-of-type(odd) {
+    background-color: lighten(#73C1BB, 10);
+}
+
+.list li:nth-of-type(odd):active {
+    background-color: lighten(#73C1BB, 5);
+}
+
+
+.list li.active {
+    @include linear-gradient(to bottom, #2333CF 0%, #2333CF 70%, darken(#2333CF, 10) 100%);
+    cursor: default;
+}
